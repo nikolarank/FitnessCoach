@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -174,6 +175,7 @@
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\myFitnessTrainingController.cs" />
     <Compile Include="Controllers\NamirnicaController.cs" />
+    <Compile Include="Controllers\PlanIshraneController.cs" />
     <Compile Include="Controllers\RegistracijaController.cs" />
     <Compile Include="Controllers\TreningController.cs" />
     <Compile Include="Controllers\VezbaController.cs" />
@@ -190,6 +192,7 @@
     <Compile Include="Models\LogInModel.cs" />
     <Compile Include="Models\MessagesModel.cs" />
     <Compile Include="Models\NamirnicaModel.cs" />
+    <Compile Include="Models\PlanIshraneModel.cs" />
     <Compile Include="Models\RegistracijaModel.cs" />
     <Compile Include="Models\Slika.cs" />
     <Compile Include="Models\TreningModel.cs" />
@@ -377,10 +380,11 @@
     <Content Include="Views\ListaInstruktora\ListaFitnessInstruktora.cshtml" />
     <Content Include="Views\ListaKlijenata\ListaKlijenata.cshtml" />
     <Content Include="Views\ClientDashboard\ClientDashboard.cshtml" />
-    <Content Include="Views\Messages\Index.cshtml" />
     <Content Include="Views\Vezba\ListaVezbi.cshtml" />
     <Content Include="Views\Trening\ListaTreninga.cshtml" />
     <Content Include="Views\myFitnessTraining\myFitnessTraining.cshtml" />
+    <Content Include="Views\PlanIshrane\ListaPlanovaIshrane.cshtml" />
+    <Content Include="Views\Messages\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
