@@ -123,7 +123,7 @@
                                             <div class="modal-body">
                                                 <!-- red sa podacima -->
                                                 @{
-                                foreach (var promenljiva in Model.VezbeUTreningu(item.Id))
+                                foreach (var promenljiva in Model.VezbeUTreningu(item.Id.ToString()))
                                 {
                                     <div class="row well">
                                         <div class="col-md-12" style="text-align:center; color:#337ab7;"><img src=@Model.VezbaToBase64(promenljiva.Slika, promenljiva.Misicna_Partija) class="img-thumbnail img-responsive" style="height:100px; width:100px;" /></div>
@@ -165,22 +165,17 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title" style="text-align:center; color:#337ab7;">Dodaj vezbu</h4>
+                            <h4 class="modal-title" style="text-align:center; color:#337ab7;">Dodaj trening</h4>
                         </div>
 
-                        @using (Html.BeginForm("DodajVezbu", "Vezba", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        {
+                        <form method="post" action="@Url.Action("DodajTrening", "Trening")">
                             <div class="modal-body">
                                 <div class="container-fluid">
-                                    <div class="row" style="margin-bottom: 10px;margin-left:5px; margin-right:5px; text-align:center;">
-                                        <input type="file" name="file" id="file" />
-                                    </div>
+
                                     <div class="row" style="margin-bottom: 10px;margin-left:5px; margin-right:5px; text-align:center;">
                                         @Html.TextBox("naziv", null, new { @class = "form-control", @id = "naziv", @name = "naziv", @placeholder = "Naziv" })
                                     </div>
-                                    <div class="row" style="margin-bottom: 10px;margin-left:5px; margin-right:5px; text-align:center;">
-                                        @Html.TextBox("tekst", null, new { @class = "form-control", @id = "tekst", @name = "tekst", @placeholder = "Tekst" })
-                                    </div>
+
                                     <div class="row" style="margin-bottom: 10px;margin-left:5px; margin-right:5px; text-align:center;">
                                         @Html.DropDownList("misicna_partija",
                                                             new List<SelectListItem>{
@@ -194,12 +189,16 @@
                                                                                     },
                                        "Misicna partija", new { @class = "form-control", @size = "4" })
                                     </div>
+
+                                    <div class="row" style="margin-bottom: 10px;margin-left:5px; margin-right:5px; text-align:center;">
+                                        @Html.DropDownList("vezbe", Model.SveVezbe(), "Vezbe", new { @class = "form-control", @size = "4", @multiple = "multiple" })
+                                    </div>
                                     <div class="row" style="margin-bottom: 10px; margin-left: 5px; margin-right: 5px; text-align: center; "> <button class="btn btn-primary btn-block">Dodaj</button></div>
                                 </div>
                             </div>
-                        }
+                        </form>
 
-                    </div>
+</div>
                 </div>
             </div>
             <!-- KRAJ MODALA ZA DODAVANJE TRENINGA -->

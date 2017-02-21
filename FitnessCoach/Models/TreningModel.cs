@@ -6,6 +6,7 @@ using System.Web;
 using Mongo.DataAccess;
 using Mongo.Documents;
 using MongoDB.Bson;
+using System.Web.Mvc;
 
 namespace FitnessCoach.Models
 {
@@ -27,9 +28,25 @@ namespace FitnessCoach.Models
             return Treninzi.SelektovaniMisici(trbusnjaci, ledja, biceps, grudi, noge, ramena, triceps, sve);
         }
 
-        public List<Vezba> VezbeUTreningu(ObjectId treningID)
+        public List<Vezba> VezbeUTreningu(string treningID)
         {
-            return Treninzi.SveVezbeUTreningu(treningID);
+            ObjectId i = ObjectId.Parse(treningID);
+            return Treninzi.SveVezbeUTreningu(i);
+        }
+
+        public List<SelectListItem> SveVezbe()
+        {
+            List<SelectListItem> listItems = new List<SelectListItem>();
+            foreach (Vezba v in Vezbe.SveVezbe())
+            {
+                listItems.Add(new SelectListItem
+                {
+                    Text = v.Naziv,
+                    Value = v.Id.ToString()
+                });
+            }
+
+            return listItems;
         }
 
         public TreningModel()

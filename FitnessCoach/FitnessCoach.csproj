@@ -172,6 +172,7 @@
     <Compile Include="Controllers\ListaKlijenataController.cs" />
     <Compile Include="Controllers\LogInController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="Controllers\myFitnessTrainingController.cs" />
     <Compile Include="Controllers\NamirnicaController.cs" />
     <Compile Include="Controllers\RegistracijaController.cs" />
     <Compile Include="Controllers\TreningController.cs" />
@@ -379,6 +380,7 @@
     <Content Include="Views\Messages\Index.cshtml" />
     <Content Include="Views\Vezba\ListaVezbi.cshtml" />
     <Content Include="Views\Trening\ListaTreninga.cshtml" />
+    <Content Include="Views\myFitnessTraining\myFitnessTraining.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

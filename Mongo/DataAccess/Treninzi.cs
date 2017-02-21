@@ -67,9 +67,10 @@ namespace Mongo.DataAccess
             List<Vezba> sve = new List<Vezba>();
             MongoCollection<Trening> treninziCollection = Connection<Trening>.getCollection("treninzi");
 
-            foreach (MongoDBRef vezbaRef in Procitaj(treningID).Vezbe.ToList())
+            foreach (MongoDBRef vezbaRef in Procitaj(treningID).Vezbe)
             {
-                sve.Add(Connection<Trening>.getDatabase().FetchDBRefAs<Vezba>(vezbaRef));
+                //sve.Add(Connection<Vezba>.getDatabase().FetchDBRefAs<Vezba>(vezbaRef));
+                sve.Add(Vezbe.Procitaj(ObjectId.Parse(vezbaRef.Id.ToString())));
             }
 
             return sve;

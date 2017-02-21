@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using Mongo.Documents;
 using Mongo.DataAccess;
 using FitnessCoach.Models;
+using System.IO;
+using MongoDB.Driver;
 
 namespace FitnessCoach.Controllers
 {
@@ -26,7 +28,28 @@ namespace FitnessCoach.Controllers
             model.Triceps = Triceps;
             model.SelectAll = SelectAll;
 
-            return View(model);
+            return View("~/Views/Trening/ListaTreninga.cshtml", model);
+        }
+
+        public ActionResult DodajTrening(string naziv, string misicna_partija, string[] vezbe)
+        {
+            List<MongoDBRef> lista = new List<MongoDBRef>();
+            foreach (string v in vezbe)
+            {
+                lista.Add(new MongoDBRef("vezbe", v));
+            }
+
+            Trening t = new Trening()
+            {
+                Naziv = naziv,
+                Misicna_Partija = misicna_partija,
+                Prosecna_Ocena = 0.0f,
+                Broj_Ocenjivanja = 0,
+                Vezbe = lista
+            };
+
+            Treninzi.Dodaj(t);
+            return ListaTreninga(false, false, false, false, false, false, false, true);
         }
 
 	}
