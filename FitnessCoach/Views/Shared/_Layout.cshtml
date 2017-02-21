@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Fitness Coach</title>
+    @Styles.Render("~/Content/CSS")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <!-- NAVIGACIJA ZA SAJT -->
+    <nav class="navbar navbar-default navbar-fixed-top" style="margin-bottom:0px; opacity:1; background-color: white;">
+        <div class="container-fluid" style="padding-top:0px; padding-bottom:0px;">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="icon-bar" style="background-color:#337ab7;"></span>
+                    <span class="icon-bar" style="background-color:#337ab7;"></span>
+                    <span class="icon-bar" style="background-color:#337ab7;"></span>
+                </button>
+                <a class="navbar-brand" href="~/Home/Home" style="color:#337ab7;"> Fitness Coach </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right" style="text-align:center;">
+                    <li class="active"> @Html.ActionLink("Home", "Home", "Home", null, new { @style = "color:#337ab7;" }) </li>
+                    <!-- Nutrition DUGME POCETAK -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:#337ab7;">Nutrition <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Nutrition Database", "ListaNamirnica", "Namirnica", null, new { @style = "color:#337ab7;" })</li>
+                            <li>@Html.ActionLink("Nutrition Plans", "ListaPlanovaIshrane", "PlanIshrane", null, new { @style = "color:#337ab7;" })</li>
+                        </ul>
+                    </li>
+                    <!-- Nutrition DUGME KRAJ -->
+                    <!-- Training DUGME POCETAK -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:#337ab7;">Training & Exercise<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Exercise Database", "ListaVezbi", "Vezba", null, new { @style = "color:#337ab7;" })</li>
+                            <li>@Html.ActionLink("Exercise Plans", "ListaTreninga", "Trening", null, new { @style = "color:#337ab7;" })</li>
+                        </ul>
+                    </li>
+                    <!-- Training DUGME KRAJ -->
+                    @if ((string)Session["Status"] == "korisnik")
+                    {
+
+                        <li> @Html.ActionLink("List Of Instructors", "ListaFitnessInstruktora", "ListaInstruktora", null, new { @style = "color:#337ab7;" }) </li>
+                    }
+                    else
+                    {
+                        if ((string)Session["Status"] == "fitnes_instruktor")
+                        {
+                            <li> @Html.ActionLink("List Of Clients", "ListaKlijenata", "ListaKlijenata", null, new { @style = "color:#337ab7;" }) </li>
+                        }
+                        else
+                        {
+
+
+
+                        }
+                    }
+                    @if ((string)Session["Status"] == "administrator")
+                    {
+
+                    }
+                    else
+                    {
+                        <li> @Html.ActionLink("Messages", "Index", "Messages", null, new { @style = "color:#337ab7;" }) </li>
+                    }
+                    @if ((string)Session["Status"] != "administrator")
+                    {
+                        <li> @Html.ActionLink((string)Session["Ime"], "ProfilnaKorisnikInstruktor", "Korisnik", null, new { @style = "color:#337ab7;" }) </li>
+                    }
+                    else
+                    {
+                        <li> @Html.ActionLink((string)Session["Ime"], "ProfilnaAdministrator", "Korisnik", null, new { @style = "color:#337ab7;" }) </li>
+                    }
+                    <li> <a href="@Url.Action("LogOut", "LogIn")" style="color:#337ab7;"> Log out <span class="glyphicon glyphicon-log-out"></span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- KRAJ NAVIGACIJE ZA SAJT -->
+    <!-- GLAVNI SADRZAJ ZA SAJT -->
+    <div class="container-fluid body-content" style="margin:0px;padding:0px; margin-top:0px; margin-bottom: 10px;">
+        @RenderBody()
+    </div>
+    <!-- KRAJ GLAVNOG SADRZAJA ZA SAJT -->
+
+    <footer class="footer" style="position: fixed;bottom: 0;width: 100%;  background-color: white; opacity:1;">
+        <div class="container">
+            <div class="row" style="color:#337ab7; text-align:center; margin-top:5px; margin-bottom:5px;">
+                <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:right; color:black;"> Copyright 2016 FitnessCoach.com</div>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

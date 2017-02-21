@@ -1,0 +1,124 @@
+﻿@model FitnessCoach.Models.AdministratorModel
+
+@{
+    ViewBag.Title = "ProfilnaAdministrator";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<head>
+    <script>
+        $(document).ready(function () {
+            $('#exampleUsers').DataTable();
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#exampleInstructors').DataTable();
+        });
+    </script>
+
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/bootstrapDataTables.js"></script>
+    <link href="~/Content/CSS/dataTablesBootstrap.css" rel="stylesheet" />
+
+</head>
+
+<body style="background: repeating-linear-gradient(135deg, transparent 0px, transparent 18px, #EFEFEF 5px, #EFEFEF 20px);background-repeat: no-repeat; background-position: center center; background-attachment: fixed; background-size: cover; padding-top:0px;">
+
+    <!-- POCETAK ZA PROFIL -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row" style="text-align:center; color:#337ab7;"> <h3>List of users:</h3> </div>
+                <!-- RED ZA WELL SA PODACIMA -->
+                <div class="row well" style="height:500px; margin:5px;">
+                    <table id="exampleUsers" class="table  table-bordered" cellspacing="0" width="100%" style="background-color:rgba(255,255,255,1);">
+                        <thead style="color:#337ab7;">
+                            <tr>
+                                <th>Name</th>
+                                <th>Username</th>
+                                <th>E-mail</th>
+                                <th>Instructor Request</th>
+                                <th>Delete User</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                foreach (var item in Model.Korisnicii)
+                                {
+                                    <tr>
+                                        <td>@item.Ime @item.Prezime</td>
+                                        <td>@item.Korisnicko_Ime</td>
+                                        <td>@item.Email</td>
+                                        <td>
+                                            @if (item.Zahtev_Za_Instruktora == true)
+                                            {
+                                                <form method="post" action="@Url.Action("KorisnikToInstruktor", "Korisnik", new { id = item.Id.ToString() })">
+                                                    <div class="col-md-6" style="text-align:center; color:green;"><button class="btn btn-outline-secondary"><span class="glyphicon glyphicon-ok-circle"></span></button></div>
+                                                </form>
+                                                <form method="post" action="@Url.Action("OdbijenZahtev", "Korisnik", new { id = item.Id.ToString() })">
+                                                    <div class="col-md-6" style="text-align:center; color:red;"><button class="btn btn-outline-secondary"><span class="glyphicon glyphicon-ban-circle"></span></button></div>
+                                                </form>
+                                            }
+                                        </td>
+                                        <td>
+                                            <form method="post" action="@Url.Action("BrisiKorisnika", "Korisnik", new { id = item.Id.ToString() })">
+                                                <div class="col-md-6" style="text-align:center; color:red;"><button class="btn btn-outline-secondary"><span class="glyphicon glyphicon-remove"></span></button></div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- KRAJ REDA ZA WELL SA PODACIMA -->
+            </div>
+
+            <div class="col-md-6">
+                <div class="row" style="text-align:center; color:#337ab7;"> <h3>List of Instructors:</h3> </div>
+                <!-- RED ZA WELL SA PODACIMA -->
+                <div class="row well" style="height:500px; margin:5px;">
+                    <table id="exampleInstructors" class="table  table-bordered" cellspacing="0" width="100%" style="background-color:rgba(255,255,255,1);">
+                        <thead style="color:#337ab7;">
+                            <tr>
+                                <th>Name</th>
+                                <th>Username</th>
+                                <th>E-mail</th>
+                                <th>Rang</th>
+                                <th>Remove Instructor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                foreach (var item in Model.Instruktori)
+                                {
+                                    <tr>
+                                        <td>@item.Ime @item.Prezime</td>
+                                        <td>@item.Korisnicko_Ime</td>
+                                        <td>@item.Email</td>
+                                        <td>@item.Rang</td>
+                                        <td>
+                                            <div class="col-md-12" style="text-align:center; color:red;">
+                                                <form method="post" action="@Url.Action("InstruktorToKorisnik", "Korisnik", new { id = item.Id })">
+                                                    <button class="btn btn-outline-secondary"><span class="glyphicon glyphicon-ban-circle"></span></button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- KRAJ REDA ZA WELL SA PODACIMA -->
+            </div>
+        </div>
+    </div>
+    <!-- KRAJ ZA PROFIL -->
+</body>
+</html>
+

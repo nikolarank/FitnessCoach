@@ -1,0 +1,127 @@
+﻿@model FitnessCoach.Models.ListaInstruktoraModel
+
+@{
+    ViewBag.Title = "ListaFitnessInstruktora";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<head>
+
+    <title>List of Instructors</title>
+
+</head>
+<html>
+
+<body style="background-image: url('../../Content/slike/MessagesBackground.jpg'); background-repeat: no-repeat; background-position: center center; background-attachment: fixed; background-size: cover; padding-top: 0px;">
+
+    <!-- GLAVNI RED ZA SADRZAJ -->
+    <!-- GLAVNI WELL ZA INSTRUKTORE -->
+    <div class="col-md-offset-3 col-md-6 well" style="padding-top:0; padding-bottom:0; background-color:rgba(244,244,244,0.5); height:700px; margin-top:60px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 style="color:#337ab7; text-align:center;"> List of Instructors: </h3>
+            </div>
+        </div>
+        <!-- LISTA INSTRUKTORA -->
+        <div class="well" style="background-color:rgba(255,255,255,0.95);height:600px; overflow-x:auto;" data-toggle="tooltip" title="Instructors List">
+
+            <table class="table table-hover" style="min-width:470px;">
+                <thead>
+                    <tr>
+                        <th colspan="5" style="text-align:center; color:#337ab7;"> This list shows all FitnessCoach.com fitness instructors. You can review the list to find the most appropriate instructor for your needs. After you have decided on which instructor you are going to hire, use the "View Info" button to view the detailed information and hire an instructor. </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var item in Model.Instruktori)
+                        {
+                            if (Session["Instruktor"] == null || (item.Id != Model.VratiObjectIdInstruktora()))
+                            {
+                                <tr>
+                                    <td style="text-align:left;"><img src=@Model.slika(item) class="img-thumbnail img-responsive" style="width:60px;" /></td>
+                                    <td style="text-align:left; color:#337ab7; font-size:22px; padding-top:25px;"> @item.Ime @item.Prezime </td>
+                                    <td style="text-align:left; color:#337ab7; font-size:22px; padding-top:25px;"> Rang: @item.Rang </td>
+                                    <td style="text-align:center; padding-top:25px;"><button class="btn btn-info btn-block" data-toggle="modal" data-target="#@item.Id.ToString()">View Info</button></td>
+                                    <!-- SKRIVENI MODAL ZA DETALJNE INFORMACIJE O INSTRUKTORU -->
+                                    <td>
+                                        <div id="@item.Id.ToString()" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title" style="text-align:center; font-size:25px; color:#337ab7;">@item.Ime @item.Prezime</h4>
+                                                    </div>
+                                                    <div class="modal-body" style="padding-bottom:0px;">
+                                                        <div class="row" style="text-align:center;"><img src=@Model.slika(item) class="img-thumbnail img-responsive" style="width:250px;" /></div>
+                                                        <div class="row well" style="color:#337ab7; font-size:25px; margin-top:15px; margin-bottom:0px; text-align:center;"> Biography: <br><p style="font-size:16px; margin-top:20px; text-align:center; font-weight:500;"> @item.Biografija <br /> <p style="color: green;">@item.Ime @item.Prezime's current Fitness Instructor Ranking is: @item.Rang</p></div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        @if (Session["Instruktor"] == null)
+                                                        {
+                                                            <form method="post" action="@Url.Action("HireInstructor", "ListaInstruktora", new { id = item.Id.ToString() })">
+                                                                <button class="btn btn-info btn-block"> Hire Instructor </button>
+                                                            </form>
+                                                        }
+                                                        else
+                                                        {
+                                                            <p style="color:red; font-size:20px; font-weight:600; text-align:center;"> You must first fire your instructor before hiring another one. Do this by going to your profile page or fining your instructor in the Instructors List (your instructor is color-marked).</p>
+                                                        }
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <!-- KRAJ SKRIVENOG MODALA ZA DETALJNE INFORMACIJE O INSTRUKTORU -->
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr style="background-color:antiquewhite;">
+                                    <td style="text-align:left;"><img src=@Model.slika(item) class="img-thumbnail img-responsive" style="width:60px;" /></td>
+                                    <td style="text-align:left; color:#337ab7; font-size:22px; padding-top:25px;"> @item.Ime @item.Prezime </td>
+                                    <td style="text-align:left; color:#337ab7; font-size:22px; padding-top:25px;"> Rang: @item.Rang </td>
+                                    <td style="text-align:center; padding-top:25px;"><button class="btn btn-info btn-block" data-toggle="modal" data-target="#@item.Id.ToString()">View Info</button></td>
+                                    <!-- SKRIVENI MODAL ZA DETALJNE INFORMACIJE O INSTRUKTORU -->
+                                    <td>
+                                        <div id="@item.Id.ToString()" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title" style="text-align:center; font-size:25px; color:#337ab7;">@item.Ime @item.Prezime</h4>
+                                                    </div>
+                                                    <div class="modal-body" style="padding-bottom:0px;">
+                                                        <div class="row" style="text-align:center;"><img src=@Model.slika(item) class="img-thumbnail img-responsive" style="width:250px;" /></div>
+                                                        <div class="row well" style="color:#337ab7; font-size:25px; margin-top:15px; margin-bottom:0px; text-align:center;"> Biography: <br><p style="font-size:16px; margin-top:20px; text-align:center; font-weight:500;"> @item.Biografija <br /> <p style="color: green;">@item.Ime @item.Prezime's current Fitness Instructor Ranking is: @item.Rang</p></div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <form method="post" action="@Url.Action("FireInstructor", "ListaInstruktora", new { id = item.Id.ToString() })">
+                                                            <button class="btn btn-danger btn-block"> Fire Instructor! </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <!-- KRAJ SKRIVENOG MODALA ZA DETALJNE INFORMACIJE O INSTRUKTORU -->
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- LISTA INSTRUKTORA KRAJ -->
+    </div>
+    <!-- KRAJ GLAVNOG WELLA ZA INSTRUKTORE -->
+    <!-- KRAJ GLAVNOG REDA ZA SADRZAJ -->
+</body>
+</html>
+

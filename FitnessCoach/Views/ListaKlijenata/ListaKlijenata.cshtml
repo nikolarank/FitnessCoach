@@ -1,0 +1,55 @@
+﻿@model FitnessCoach.Models.ListaKlijenataModel
+
+@{
+    ViewBag.Title = "ListaKlijenata";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<head>
+
+    <title>List of Clients</title>
+
+</head>
+<html>
+
+<body style="background-image: url('../../Content/slike/MessagesBackground.jpg'); background-repeat: no-repeat; background-position: center center; background-attachment: fixed; background-size: cover; padding-top: 0px;">
+
+    <!-- GLAVNI RED ZA SADRZAJ -->
+    <!-- GLAVNI WELL ZA INSTRUKTORE -->
+    <div class="col-md-offset-3 col-md-6 well" style="padding-top:0; padding-bottom:0; background-color:rgba(244,244,244,0.5); height:700px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 style="color:#337ab7; text-align:center;"> List of Clients: </h3>
+            </div>
+        </div>
+        <!-- LISTA INSTRUKTORA -->
+        <div class="well" style="background-color:rgba(255,255,255,0.95);height:600px; overflow-x:auto;" data-toggle="tooltip" title="Instructors List">
+
+            <table class="table table-hover" style="min-width:470px;">
+                <thead>
+                    <tr>
+                        <th colspan="5" style="text-align:center; color:#337ab7;"> This list shows your subscribed clients. Click on any client to visit their Client Dashboard where you can send them an existing Exercise/Nutrition plan or create a new one.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Klijenti)
+                    {
+                        //Session["OdabraniKlijent"] = item;
+                        <tr>
+                            <td style="text-align:center;"><img src=@Model.slika(item) class="img-thumbnail img-responsive" style="width:60px;" /></td>
+                            <td style="text-align:center; color:#337ab7; font-size:22px; padding-top:25px;"> @item.Ime @item.Prezime  </td>
+                            <td style="text-align:center; color:#337ab7; font-size:22px; padding-top:25px;">@Html.ActionLink("Dashboard", "ClientDashboard", "ClientDashboard", new { korisnik = item.Id }, new { @style = "color:#337ab7;" })</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- LISTA INSTRUKTORA KRAJ -->
+    </div>
+    <!-- KRAJ GLAVNOG WELLA ZA INSTRUKTORE -->
+    <!-- KRAJ GLAVNOG REDA ZA SADRZAJ -->
+</body>
+</html>
+

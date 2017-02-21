@@ -1,0 +1,201 @@
+﻿@model FitnessCoach.Models.KorisnikModel
+
+@{
+    ViewBag.Title = "ProfilnaKorisnikInstruktor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<head>
+
+    <script>
+        $(document).ready(function () {
+            $('#example6').DataTable();
+        });
+    </script>
+
+    <title>Instructor Profile</title>
+    <link href="~/Content/CSS/MyProfileInstruktor.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrapDataTables.js"></script>
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+</head>
+<body style="background-color:#F7F9F8;background-repeat: no-repeat; background-position: center center; background-attachment: fixed; background-size: cover;padding-top:0px;">
+    <!-- POCETAK ZA PROFIL -->
+    <!-- First Container -->
+    <div class="container-fluid bg-1 text-center">
+        @if ((string)Session["Status"] == "korisnik")
+        {
+            <h3 class="margin">Fitness Coach User Profile:</h3>
+        }
+        else
+        {
+            <h3 class="margin">Fitness Coach Instructor Profile:</h3>
+        }
+        <img src=@Model.slika(Model.castSesijuUKorisnika()) class="img-circle margin" style="display:inline; margin-bottom:5px;" alt="ProfilePhoto" width="200" height="200" data-toggle="collapse" data-target="#profilePhotoChange" data-toggle="tooltip" title="Click here to change your profile photo. Your previous profile photo will be removed.">
+        <h3>@Model.castSesijuUKorisnika().Ime @Model.castSesijuUKorisnika().Prezime</h3>
+        @if ((string)Session["Status"] == "fitnes_instruktor")
+        {
+            <p> <span class="glyphicon glyphicon-star"> </span> &nbsp;Ranking: @Model.castSesijuUKorisnika().Rang </p>
+        }
+        <div class="collapse" id="profilePhotoChange" style="text-align:center;">
+            <div class="row">
+
+                @using (Html.BeginForm("IzmeniSliku", "Korisnik", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <p class="pull-left" style="margin-left:15px;">
+                        Upload your profile photo:<button class="btn btn-info btn-block">Upload</button>
+
+                    </p>
+                    <div class="col-md-12">
+
+                        <input type="file" name="file" id="file" />
+
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Second Container -->
+    <div class="container-fluid bg-2 text-center" style="padding-bottom:20px;">
+        <h3 class="margin" style="margin-bottom:25px;">My account details:</h3>
+        <!-- MOJI DETALJI -->
+        <!-- 1-VI RED -->
+        <div class="row" style="font-size:18px; border-top:thin; border-top-style:solid; border-top-color:#747474">
+            <div class="col-md-12 nekiHover" style="margin-top:10px;">
+                <div class="pull-left"> Name: @Model.castSesijuUKorisnika().Ime   @Model.castSesijuUKorisnika().Prezime</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- KRAJ 1-OG REDA -->
+    @if ((string)Session["Status"] == "fitnes_instruktor")
+    {
+        <!-- 2-GI RED -->
+        <div class="row" style="font-size:18px;">
+            <div class="col-md-12 nekiHover" style="background-color: #474e5d">
+                <div class="pull-left" style="color:white;"> Biography: @Model.castSesijuUKorisnika().Biografija</div> <div data-toggle="collapse" data-target="#drugiRed"><div class="glyphicon glyphicon-edit pull-right" data-toggle="tooltip" data-placement="left" title="My Biography" style="color:white;"> </div></div>
+            </div>
+        </div>
+
+        <div class="collapse well" id="drugiRed" style="margin:10px;">
+            <div class="row" style="margin-bottom:10px; display:block; width:100%;">
+                <div class="col-md-4"></div>
+                <form method="post" action="@Html.ActionLink("Submit", "PromeniBiografiju", "Korisnik")">
+                    <div class="col-md-4">
+                        @Html.TextAreaFor(m => m.biografija, new { @style = "margin-bottom:10px; resize:none; border-radius:5px; max-width:inherit; width:100%;" })
+                    </div>
+                </form>
+                <div class="col-md-4"></div>
+            </div>
+
+        </div>
+        <!-- KRAJ 2-OG REDA -->
+    }
+
+
+    @if ((string)Session["Status"] == "fitnes_instruktor")
+    {
+        <!-- 5-TI RED (RED ZA MOJE SERTIFIKATE) -->
+        <div class="row" style="font-size:18px;">
+            <div class="col-md-12 nekiHover" style="background-color: #474e5d">
+                <div class="pull-left" style="color:white;"> My certifications: </div> <div data-toggle="collapse" data-target="#petiRed"><div class="glyphicon glyphicon-edit pull-right" data-toggle="tooltip" data-placement="left" title="View your certificates" style="color:white;"></div></div>
+            </div>
+        </div>
+
+        <div class="collapse well" id="petiRed" style="margin:10px;">
+
+            <div class="row" style="margin-bottom:10px; margin-left:20px; margin-right:20px;">
+                <div class="col-md-12 well" style="height:auto; border-radius:10px; background-color:rgba(235, 215, 215,0.7)">
+                    <!-- LISTA SERTIFIKATA -->
+                    <table id="example6" class="table  table-bordered" cellspacing="0" width="100%" style="background-color:rgba(255,255,255,1);">
+                        <thead style="color:#337ab7;">
+                            <tr style="text-align:center;">
+                                <th>Certification Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color:#337ab7;;">Neki random sertifikat</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- KRAJ ZA LISTU SERTIFIKATA -->
+                </div>
+
+                <div class="col-md-4"> </div>
+                <div class="col-md-4" style="text-align:center;">
+                    <button class="btn btn-info btn-block" title="Add a new certificate from a list of certificates" data-toggle="collapse" data-target="#petiRedLista"> Add a new certificate </button>
+                </div>
+                <div class="col-md-4"> </div>
+            </div>
+
+            <div class="row collapse well" id="petiRedLista" style="margin-left:20px; margin-right:20px; border-radius:10px;">
+
+            </div>
+        </div>
+    }
+    else
+    {
+    <!-- 4-TI RED -->
+
+    <!-- KRAJ 5-OG REDA (RED ZA MOJE SERTIFIKATE)-->
+    }
+    </div>
+
+    </div>
+
+    <!-- KRAJ ZA MOJE DETALJE -->
+    </div>
+
+    @if ((string)Session["Status"] == "fitnes_instruktor")
+    {
+    <!-- Third Container (Grid) -->
+        <div class="container-fluid bg-3 text-center">
+            <h3 class="margin">My Clients Corner:</h3><br>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <p> Click here to see a list of your clients. You can use it to send detailed nutrition and exercise plans to your clients or you can use it to remove any client that you want.</p><br>
+                <a href="@Url.Action("ListaKlijenata", "ListaKlijenata" )">
+                    <img src="~/Content/profilDugmeSlike/instructorMyClients.png" style="width: 35%;" class="margin img-thumbnail" />
+                </a>
+            </div>
+            <div class="col-md-4"> </div>
+        </div>
+    }
+    else
+    {
+        <div class="container-fluid bg-3 text-center">
+            <h3 class="margin">My Fitness Corner:</h3><br>
+            <div class="row">
+                <div class="col-sm-4">
+                    <p> Browse through your Nutrition Corner. Access your personal nutrition database with all your favourite nutrition plans.</p>
+                    <a href="@Url.Action("myFitnessNutrition", "myFitnessNutrition" )">
+                        <img src="~/Content/profilDugmeSlike/userMyNutrition.png" style="width: 35%;" class="margin img-thumbnail" />
+                    </a>
+                </div>
+                <div class="col-sm-4">
+                    <p> Browse through your Training Corner. Access your personal training database with all your favourite routines.</p><br>
+                    <a href="@Url.Action("myFitnessTraining", "myFitnessTraining" )">
+                        <img src="~/Content/profilDugmeSlike/userMyTraining.png" style="width: 35%;" class="margin img-thumbnail" />
+                    </a>
+                </div>
+                <div class="col-sm-4">
+                    <p> Click here if you want to become a fitness instructor on Fitness Coach.</p><br>
+
+                    <a href="@Url.Action("zahtevajInstruktora", "Korisnik" )">
+                        <img src="~/Content/profilDugmeSlike/userBecomeAnInstructor.png" class="margin img-thumbnail" style="width:35%" alt="Image">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    }
+    <!-- KRAJ ZA PROFIL -->
+</body>
+</html>
+

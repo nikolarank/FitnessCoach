@@ -1,0 +1,108 @@
+﻿@model FitnessCoach.Models.NamirnicaModel
+
+@{
+    ViewBag.Title = "ListaNamirnica";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<head>
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/bootstrapDataTables.js"></script>
+    <link href="~/Content/CSS/dataTablesBootstrap.css" rel="stylesheet" />
+</head>
+<body style="background-image: url('../../Content/slike/listaNamirnica.jpg'); background-repeat: no-repeat; background-position: center center; background-attachment: fixed; background-size: cover; padding-top:0px;">
+
+    <script>
+        $(document).ready(function () {
+            $('#example').dataTable();
+        });
+    </script>
+
+    <div class="container-fluid" style="margin-top:60px;">
+        <div class="col-md-offset-2 col-md-8 well" style="background-color:rgba(244,244,244,0.5); margin-top:6%; min-width:550px;">
+
+            @*ovo omoguciti samo u slucaju da je instruktor*@
+            <div class="row" style="padding-bottom: 2px; padding-top:5px;">
+                <div class="col-md-12" style="text-align:center;">
+                    <a href="#" style="color:#337ab7;" data-toggle="modal" data-target="#dodajNamirnicuModal"> Dodaj namirnicu </a>
+                </div>
+            </div>
+
+            <table id="example" class="table  table-bordered" cellspacing="0" width="100%" style="background-color:rgba(255,255,255,1);">
+                <thead style="color:#337ab7;">
+                    <tr>
+                        <th>Name</th>
+                        <th>Calories</th>
+                        <th>Proteins</th>
+                        <th>Carbohydrates</th>
+                        <th>Fats</th>
+                    </tr>
+                </thead>
+                <tfoot style="color:#337ab7;">
+                    <tr>
+                        <th>Name</th>
+                        <th>Calories</th>
+                        <th>Proteins</th>
+                        <th>Carbohydrates</th>
+                        <th>Fats</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @{
+                        foreach (var item in Model.namirnice)
+                        {
+                            <tr>
+                                <td>@item.Naziv</td>
+                                <td>@item.Kalorije</td>
+                                <td>@item.Proteini</td>
+                                <td>@item.Uh</td>
+                                <td>@item.Masti</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+            <!-- MODAL ZA DODAVANJE NAMIRNICE -->
+            <div id="dodajNamirnicuModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" style="text-align:center; color:#337ab7;">Dodaj namirnicu</h4>
+                        </div>
+                        <form method="post" action="@Url.Action("DodajNamirnicu", "Namirnica")">
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <div class="row" style="margin-bottom: 10px;margin-left:5px; margin-right:5px; text-align:center;">
+                                        @Html.TextBox("naziv", null, new { @class = "form-control", @id = "naziv", @name = "naziv", @placeholder = "Naziv" })
+                                    </div>
+                                    <div class="row" style="margin-bottom: 10px;margin-left:5px; margin-right:5px; text-align:center;">
+                                        @Html.TextBox("kalorije", null, new { @class = "form-control", @id = "kalorije", @name = "kalorije", @placeholder = "Kalorije" })
+                                    </div>
+                                    <div class="row" style="margin-bottom: 10px;margin-left:5px; margin-right:5px; text-align:center;">
+                                        @Html.TextBox("proteini", null, new { @class = "form-control", @id = "proteini", @name = "proteini", @placeholder = "Proteini" })
+                                    </div>
+                                    <div class="row" style="margin-bottom: 10px;margin-left:5px; margin-right:5px; text-align:center;">
+                                        @Html.TextBox("uh", null, new { @class = "form-control", @id = "uh", @name = "uh", @placeholder = "Uh" })
+                                    </div>
+                                    <div class="row" style="margin-bottom: 10px;margin-left:5px; margin-right:5px; text-align:center;">
+                                        @Html.TextBox("masti", null, new { @class = "form-control", @id = "masti", @name = "masti", @placeholder = "Masti" })
+                                    </div>
+                                    <div class="row" style="margin-bottom: 10px; margin-left: 5px; margin-right: 5px; text-align: center; "> <button class="btn btn-primary btn-block">Dodaj</button></div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!-- KRAJ MODALA ZA DODAVANJE NAMIRNICE -->
+        </div>
+    </div>
+</body>
+</html>
+
