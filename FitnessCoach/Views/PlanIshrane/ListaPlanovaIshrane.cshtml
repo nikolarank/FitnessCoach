@@ -1,0 +1,130 @@
+﻿@model Fitness.Models.PlanIshraneModel
+
+@{
+    ViewBag.Title = "Nutrition Plans";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<head>
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/bootstrapDataTables.js"></script>
+    <link href="~/Content/CSS/dataTablesBootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/starPlugin.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#examplePlanovaIshrane').DataTable();
+        });
+    </script>
+
+</head>
+<body style="background-image: url('../../Content/slike/listaNamirnica.jpg'); background-repeat: no-repeat; background-position: center center; background-attachment: fixed; background-size: cover; padding-top:0px;">
+
+    <div class="container-fluid" style="margin-top:60px;">
+
+
+
+        <div class="col-md-offset-2 col-md-8 well" style="background-color:rgba(244,244,244,0.5); margin-top:6%; min-width:570px;">
+            <div class="row" style="padding-bottom: 2px; padding-top:5px;">
+                <div class="col-md-12" style="text-align:center;">
+                    <a href="#" style="color:#337ab7;" data-toggle="modal" data-target="#dodajPlanModal"> Dodaj plan ishrane </a>
+                </div>
+            </div>
+
+            <table id="examplePlanovaIshrane" class="table  table-bordered" cellspacing="0" width="100%" style="background-color:rgba(255,255,255,1);">
+                <thead style="color:#337ab7;">
+                    <tr>
+                        <th style="text-align:center;">Name</th>
+                        <th style="text-align:center;">Rating</th>
+                        <th style="text-align:center;">View Plan Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var item in Model.Planovi)
+                        {
+                            <tr style="text-align:center;">
+                                <td>@item.Naziv</td>
+                                <td>@item.Prosecna_Ocena</td>
+                                <td><button class="btn btn-default btn-block" style="background-color:rgba(255,255,255,0.5); color:#337ab7;" data-toggle="modal" data-target="#@item.Naziv">Details</button></td>
+                            </tr>
+
+
+                        <!-- Modal -->
+                            <div id="@item.Naziv" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header" style="text-align:center; color:#337ab7;">
+                                            <h4 class="modal-title">@item.Naziv</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- OBROK -->
+                                            @{
+                                                if (Model.Obroci != null)
+                                                {
+                                                    foreach (var obrok in Model.Obroci)
+                                                    {
+                                                        <div class="container-fluid">
+                                                            <div class="row"><div class="col-md-12"><h4 style="color:green">@obrok.Redni_Broj_Obroka</h4></div></div>
+                                                            <div class="row">
+                                                                @{
+                                                                    foreach (var namirnica in obrok.Namirnice)
+                                                                    {
+                                                                        <div class="col-md-12" style="text-align:center;color:cornflowerblue;"><p>@Model.vratiNamirnicu(namirnica).Naziv</p></div>
+                                                                    }
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                                        }
+                                                                    }
+                                            }
+                                            <!-- KRAJ ZA OBROK -->
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                                                                    }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- MODAL ZA DODAVANJE PLANA -->
+        <div id="dodajPlanModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="text-align:center; color:#337ab7;">Dodaj namirnicu</h4>
+                    </div>
+                    <form method="post" action="@Url.Action("DodajPlanIshrane", "PlanIshrane")">
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row" style="margin-bottom: 10px;margin-left:5px; margin-right:5px; text-align:center;">
+                                    @Html.TextBox("naziv", null, new { @class = "form-control", @id = "naziv", @name = "naziv", @placeholder = "Naziv" })
+                                </div>
+                                <div class="row" style="margin-bottom: 10px; margin-left: 5px; margin-right: 5px; text-align: center; "> <button class="btn btn-primary btn-block">Dodaj</button></div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

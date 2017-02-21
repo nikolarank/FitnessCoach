@@ -14,3 +14,11 @@ D:\GitHubProjects\FitnessCoach\FitnessCoach\Mongo\bin\Debug\MongoDB.Driver.dll
 D:\GitHubProjects\FitnessCoach\FitnessCoach\Mongo\obj\Debug\Mongo.csprojResolveAssemblyReference.cache
 D:\GitHubProjects\FitnessCoach\FitnessCoach\Mongo\obj\Debug\Mongo.exe
 D:\GitHubProjects\FitnessCoach\FitnessCoach\Mongo\obj\Debug\Mongo.pdb
+C:\Users\Nikola\Desktop\Coach\FitnessCoach\Mongo\bin\Debug\Mongo.exe.config
+C:\Users\Nikola\Desktop\Coach\FitnessCoach\Mongo\bin\Debug\Mongo.exe
+C:\Users\Nikola\Desktop\Coach\FitnessCoach\Mongo\bin\Debug\Mongo.pdb
+C:\Users\Nikola\Desktop\Coach\FitnessCoach\Mongo\bin\Debug\MongoDB.Bson.dll
+C:\Users\Nikola\Desktop\Coach\FitnessCoach\Mongo\bin\Debug\MongoDB.Driver.dll
+C:\Users\Nikola\Desktop\Coach\FitnessCoach\Mongo\obj\Debug\Mongo.csprojResolveAssemblyReference.cache
+C:\Users\Nikola\Desktop\Coach\FitnessCoach\Mongo\obj\Debug\Mongo.exe
+C:\Users\Nikola\Desktop\Coach\FitnessCoach\Mongo\obj\Debug\Mongo.pdb

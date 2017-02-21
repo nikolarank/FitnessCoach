@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace Mongo.Documents
 {
@@ -13,5 +12,10 @@ namespace Mongo.Documents
     {
         public ObjectId Id { get; set; }
         public int Redni_Broj_Obroka { get; set; }
+        public List<MongoDBRef> Namirnice { get; set; }
+        public Obrok()
+        {
+            Namirnice = new List<MongoDBRef>();
+        }
     }
 }

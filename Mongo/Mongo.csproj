@@ -52,6 +52,7 @@
     <Compile Include="DataAccess\Crud.cs" />
     <Compile Include="DataAccess\Korisnici.cs" />
     <Compile Include="DataAccess\Namirnice.cs" />
+    <Compile Include="DataAccess\Obroci.cs" />
     <Compile Include="DataAccess\PlanIshrane.cs" />
     <Compile Include="DataAccess\Poruke.cs" />
     <Compile Include="DataAccess\Treninzi.cs" />

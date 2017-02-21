@@ -15,14 +15,13 @@ namespace FitnessCoach.Models
     {
         [DataType(DataType.MultilineText)]
         public string tekstPoruke { get; set; }
-
         public Korisnik KlijentUKonverzaciji { get; set; }
         public List<Korisnik> Klijenti { get; set; }
 
         public List<Poruka> PorukeInstruktorKlijent()
         {
             if (KlijentUKonverzaciji != null)
-                return Poruke.VratiKonverzaciju((ObjectId)HttpContext.Current.Session["Id"], KlijentUKonverzaciji.Id);
+                return Poruke.VratiKonverzaciju((ObjectId)HttpContext.Current.Session["Id"], (ObjectId)KlijentUKonverzaciji.Id);
             else
                 return new List<Poruka>();
         }
@@ -35,11 +34,6 @@ namespace FitnessCoach.Models
         public Korisnik vratiPosiljaoca(MongoDBRef sender)
         {
             return Connection<Korisnik>.getDatabase().FetchDBRefAs<Korisnik>(sender);
-        }
-
-        public MongoDBRef castInstruktoraUMongDBRef()
-        {
-            return (MongoDBRef)HttpContext.Current.Session["Instruktor"];
         }
 
         public List<Poruka> PorukeKlijentInstruktor()
@@ -56,6 +50,10 @@ namespace FitnessCoach.Models
             else
                 return null;
         }
+
+
+
+
 
         public MessagesModel()
         {
