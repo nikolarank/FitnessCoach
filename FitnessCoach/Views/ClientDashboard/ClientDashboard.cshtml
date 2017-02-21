@@ -1,0 +1,156 @@
+﻿@model FitnessCoach.Models.ClientDashboardModel
+
+@{
+    ViewBag.Title = "ClientDashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<head>
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/bootstrapDataTables.js"></script>
+    <link href="~/Content/CSS/dataTablesBootstrap.css" rel="stylesheet" />
+
+    <script>
+        $(document).ready(function () {
+            $('#example1').DataTable();
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#example2').DataTable();
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#example3').DataTable();
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#example4').DataTable();
+        });
+    </script>
+    <title>Client Dashboard</title>
+
+</head>
+<html>
+
+<body style="background-image: url('../../Content/slike/MessagesBackground.jpg'); background-repeat: no-repeat; background-position: center center; background-attachment: fixed; background-size: cover; padding-top: 0px;">
+
+    <div class="container-fluid well" style="background-color:rgba(244,244,244,0.5); margin-top:60px;">
+        <div class="row" style="display:flex;">
+
+            <!-- LEVI SADRZAJ -->
+            <div class="col-md-3 well" style="background-color:rgba(255,255,255,0.8);">
+                <!-- Row za sliku -->
+                <div class="row well" style="text-align:center; background-color:rgba(255,255,255,0.8);">
+                    <div class="col-md-12"><img src=@Model.slika(Model.castSesijuUKlijenta()) class="img-thumbnail img-responsive" style="height:150px; width:150px;" /></div>
+                    <div class="col-md-12" style="color:#337ab7;font-weight:600;">@Model.castSesijuUKlijenta().Ime   @Model.castSesijuUKlijenta().Prezime </div>
+                </div>
+                <!-- Kraj row-a za sliku -->
+                <!-- Row za dugmice -->
+                <div class="row well" style="text-align:center; background-color:rgba(255,255,255,0.8);">
+                    <div class="col-md-12" style="margin:5px; display:inline;"><button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#menu3">Send existing Exercise Plan</button></div>
+                    <div class="col-md-12" style="margin:5px; display:inline;"><button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#menu4">Send existing Nutrition Plan</button></div>
+                </div>
+                <!-- Kraj row-a za dugmice-->
+                <!-- Row za Go-Back i Messages -->
+                <div class="row well" style="text-align:center; background-color:rgba(255,255,255,0.8);">
+                    <div class="col-md-12" style="margin:5px; display:inline;">
+                        @Html.ActionLink("Client Conversation", "Index", "Messages", null, new { @class = "btn btn-primary btn-block" })
+                    </div>
+
+                    <div class="col-md-12" style="margin:5px; display:inline;">
+                        @Html.ActionLink("Go back", "ListaKlijenata", "ListaKlijenata", null, new { @class = "btn btn-primary btn-block" })
+                    </div>
+                </div>
+
+            </div>
+            <!-- KRAJ LEVOG SADRZAJA -->
+            <!-- DESNI SADRZAJ-->
+            <div class="col-md-offset-1 col-md-8 well" style="background-color:rgba(255,255,255,0.8); max-height:740px;">
+
+                <!-- collapse meni 3 -->
+                <div id="menu3" class="collapse well" style="background-color:rgba(255,255,255,0.8);">
+                    <!--naslov -->
+                    <div class="row" style="text-align:center;"> <h3 style="color:#337ab7; margin-top:10px;">Send an existing Exercise Plan:</h3></div>
+                    <!-- kraj za naslov -->
+                    <!-- tabela vezbi -->
+                    <div class="row well">
+                        <h4> Select existing Exercise Plan: </h4>
+                        <table id="example3" class="table  table-bordered" cellspacing="0" width="100%" style="background-color:rgba(255,255,255,1);">
+                            <thead style="color:#337ab7;">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Muscle Group</th>
+                                    <th>Description</th>
+                                    <th>Select</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    foreach (var item in Model.SviTreninzi())
+                                    {
+                                        <tr>
+                                            <td>@item.Naziv</td>
+                                            <td>@item.Misicna_Partija</td>
+                                            <td>@Html.TextAreaFor(m => m.opisPlanaTreninga, new { @style = "margin-bottom:10px; resize:none; border-radius:5px; max-width:inherit; width:100%;" })</td>
+                                            <td style="text-align:center;">@Html.ActionLink("Add plan", "DodajTrening", "ClientDashboard", new { treningID = item.Id.ToString() }, new { @class = "btn btn-success btn-block" })</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!-- kraj za tabelu vezbi -->
+                </div>
+                <!-- kraj za collapse meni 3-->
+                <!-- collapse meni 4 -->
+                <div id="menu4" class="collapse well" style="background-color:rgba(255,255,255,0.8);">
+                    <!--naslov -->
+                    <div class="row" style="text-align:center;"> <h3 style="color:#337ab7; margin-top:10px;">Send an existing Nutrition Plan:</h3></div>
+                    <!-- kraj za naslov -->
+                    <!-- tabela vezbi -->
+                    <div class="row well">
+                        <h4> Select existing Nutrition Plan: </h4>
+                        <table id="example4" class="table  table-bordered" cellspacing="0" width="100%" style="background-color:rgba(255,255,255,1);">
+                            <thead style="color:#337ab7;">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Select</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    foreach (var item1 in Model.SviPlanoviIshrane())
+                                    {
+                                        <tr>
+                                            <td>@item1.Naziv </td>
+                                            <td>@Html.TextAreaFor(m => m.opisPlanaIshrane, new { @style = "margin-bottom:10px; resize:none; border-radius:5px; max-width:inherit; width:100%;" })</td>
+                                            <td style="text-align:center;">@Html.ActionLink("Add plan", "DodajPlanIshrane", "ClientDashboard", new { planID = item1.Id.ToString() }, new { @class = "btn btn-success btn-block" })</td>
+                                        </tr>
+                                    }
+
+                                }
+
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                    <!-- kraj za tabelu vezbi -->
+                </div>
+                <!-- kraj za collapse meni 4-->
+                <!-- KRAJ DESNOG SADRZAJA -->
+            </div>
+        </div>
+
+</body>
+</html>
+

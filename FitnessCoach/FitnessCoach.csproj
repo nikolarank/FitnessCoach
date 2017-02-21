@@ -165,26 +165,34 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClientDashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KorisnikController.cs" />
     <Compile Include="Controllers\ListaInstruktoraController.cs" />
     <Compile Include="Controllers\ListaKlijenataController.cs" />
     <Compile Include="Controllers\LogInController.cs" />
+    <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\NamirnicaController.cs" />
     <Compile Include="Controllers\RegistracijaController.cs" />
+    <Compile Include="Controllers\TreningController.cs" />
+    <Compile Include="Controllers\VezbaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdministratorModel.cs" />
+    <Compile Include="Models\ClientDashboardModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\KorisnikModel.cs" />
     <Compile Include="Models\ListaInstruktoraModel.cs" />
     <Compile Include="Models\ListaKlijenataModel.cs" />
     <Compile Include="Models\LogInModel.cs" />
+    <Compile Include="Models\MessagesModel.cs" />
     <Compile Include="Models\NamirnicaModel.cs" />
     <Compile Include="Models\RegistracijaModel.cs" />
     <Compile Include="Models\Slika.cs" />
+    <Compile Include="Models\TreningModel.cs" />
+    <Compile Include="Models\VezbaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -367,6 +375,10 @@
     <Content Include="Views\Korisnik\ProfilnaAdministrator.cshtml" />
     <Content Include="Views\ListaInstruktora\ListaFitnessInstruktora.cshtml" />
     <Content Include="Views\ListaKlijenata\ListaKlijenata.cshtml" />
+    <Content Include="Views\ClientDashboard\ClientDashboard.cshtml" />
+    <Content Include="Views\Messages\Index.cshtml" />
+    <Content Include="Views\Vezba\ListaVezbi.cshtml" />
+    <Content Include="Views\Trening\ListaTreninga.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,186 @@
+﻿@model FitnessCoach.Models.MessagesModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body style="background-image: url('../../Content/slike/MessagesBackground.jpg');background-repeat: no-repeat; background-position: center center; background-attachment: fixed; background-size: cover;padding-top:0px">
+
+    <div class="container-fluid" style="margin-top:60px;">
+        @if ((string)Session["Status"] == "fitnes_instruktor")
+        {
+        <!-- OKVIRNI WELL ZA PORUKE -->
+
+            <div class="col-md-offset-2 col-md-6 well" style="padding-top:0; padding-bottom:0; background-color:rgba(244,244,244,0.5); height:700px; margin-top:30px;">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 style="color:#337ab7; text-align:center;"> Messages: </h3>
+                    </div>
+                </div>
+                <!-- GLAVNI WELL ZA PORUKE -->
+                <!-- MESSAGES -->
+
+                <div class="well" style="background-color:rgba(255,255,255,0.95);height:500px; overflow-x:auto;" data-toggle="tooltip" title="Client - Instructor conversation panel.">
+                    <div class="row">
+                        @{
+            if (Model.KlijentUKonverzaciji != null)
+            {
+                foreach (var item in Model.PorukeInstruktorKlijent())
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="color:#337ab7; text-align:center;">
+                                    @Model.vratiPosiljaoca(item.Sender_ID).Ime
+                                    @Model.vratiPosiljaoca(item.Sender_ID).Prezime
+                                </th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <p style="color:#337ab7; text-align:center; font-weight:600;">
+                                        @item.Tekst
+                                    </p>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                }
+            }
+                        }
+
+                    </div>
+                    <!-- RAZDVAJANJE DVE TABELE -->
+                </div>
+
+                <!-- DUGME ZA SEND -->
+                <div class="row" style="margin-bottom:100px; text-align:center;">
+                    <div class="col-md-12">
+                        <form method="post" action="@Url.Action("PosaljiPoruku", "Messages", new { primalac = Model.KlijentUKonverzaciji.Id.ToString()})">
+                            @Html.TextAreaFor(m => m.tekstPoruke, new { @style = "margin-bottom:10px; resize:none; border-radius:5px; max-width:inherit; width:100%;" })
+                            <button class="btn btn-primary btn-block" style="margin-right:50px;" data-toggle="tooltip" title="Send a message to your instructor."> Send Message</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- KRAJ SEND DUGMETA -->
+                <!-- MESSAGES KRAJ -->
+
+            </div>
+
+        <!-- DODATAK ZA PORUKE INSTRUKTORA -->
+            <div class="col-md-2 well" style="padding-top:0; padding-bottom:0; background-color:rgba(244,244,244,0.5); margin-left:10px; margin-top:30px;">
+                <div class="row" style="color:#337ab7; text-align:center;"> <h3>Clients:</h3> </div>
+
+                <div class="well" style="background-color:rgba(255,255,255,0.95);overflow-x:auto; max-height:620px;" data-toggle="tooltip" title="Client - Instructor conversation panel.">
+                    <div class="row">
+                        <table class="table hoverMessages">
+                            <tbody>
+                                @{
+            foreach (var item in Model.Klijenti)
+            {
+
+
+                <tr>
+
+                    <td>
+                        <form method="post" action="@Url.Action("PrikaziKonverzacijuInstruktoraKlijenta", "Messages", new { klijent = item.Id.ToString() })">
+                            <button class="btn btn-default btn-block" style="background-color:rgba(244,244,244,0); border:none;">
+                                <p style="color:#337ab7;text-align:center; font-weight:400;">
+                                    <img src=@Model.slika(item) style="width:30px; height:30px;" /><br /> @item.Ime @item.Prezime
+                                </p>
+                            </button>
+                        </form>
+
+                    </td>
+                </tr>
+
+            }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- RAZDVAJANJE DVE TABELE -->
+                </div>
+            </div>
+        <!-- KRAJ DODATKA ZA PORUKE INSTRUKTORA -->
+
+    <!-- KRAJ GLAVNOG WELLA ZA PORUKE -->
+    <!-- KRAJ OKVIRNOG WELLA ZA PORUKE -->
+        }
+        else
+        {
+                                     <!-- OKVIRNI WELL ZA PORUKE -->
+
+            <div class="col-md-offset-3 col-md-6 well" style="padding-top:0; padding-bottom:0; background-color:rgba(244,244,244,0.5); height:700px; margin-top:30px;">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 style="color:#337ab7; text-align:center;"> Messages: </h3>
+                    </div>
+                </div>
+                <!-- GLAVNI WELL ZA PORUKE -->
+                <!-- MESSAGES -->
+
+                <div class="well" style="background-color:rgba(255,255,255,0.95);height:500px; overflow-x:auto;" data-toggle="tooltip" title="Client - Instructor conversation panel.">
+                    <div class="row">
+
+                        @{
+            if (Model.PorukeKlijentInstruktor() != null)
+            {
+                foreach (var item in Model.PorukeKlijentInstruktor())
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="color:#337ab7; text-align:center;">@Model.vratiPosiljaoca(item.Sender_ID).Ime  @Model.vratiPosiljaoca(item.Sender_ID).Prezime  @item.Vreme_Slanja</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <p style="color:#337ab7; text-align:center; font-weight:600;">
+                                        @item.Tekst
+                                    </p>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                }
+            }
+                        }
+
+                    </div>
+                    <!-- RAZDVAJANJE DVE TABELE -->
+                </div>
+
+                <!-- DUGME ZA SEND -->
+                <div class="row" style="margin-bottom:100px; text-align:center;">
+                    <div class="col-md-12">
+                        <form method="post" action="@Url.Action("PosaljiPoruku", "Messages", new { primalac = Model.castInstruktoraUMongDBRef().Id.ToString()})">
+                            @Html.TextAreaFor(m => m.tekstPoruke, new { @style = "margin-bottom:10px; resize:none; border-radius:5px; max-width:inherit; width:100%;" })
+                            <button class="btn btn-primary btn-block" style="margin-right:50px;" data-toggle="tooltip" title="Send a message to your instructor."> Send Message</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- KRAJ SEND DUGMETA -->
+                <!-- MESSAGES KRAJ -->
+
+            </div>
+    <!-- KRAJ GLAVNOG WELLA ZA PORUKE -->
+    <!-- KRAJ OKVIRNOG WELLA ZA PORUKE -->
+        }
+    </div>
+
+
+
+</body>
+

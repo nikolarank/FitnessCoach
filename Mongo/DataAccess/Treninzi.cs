@@ -74,5 +74,18 @@ namespace Mongo.DataAccess
 
             return sve;
         }
+
+        public static void Dodaj(Trening Item)
+        {
+            try
+            {
+                var collection = Connection<Trening>.getCollection("treninzi");
+                collection.Insert(Item);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
     }
 }

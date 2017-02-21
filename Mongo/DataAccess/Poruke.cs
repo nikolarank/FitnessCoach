@@ -36,7 +36,7 @@ namespace Mongo.DataAccess
 
             var find = from n in porukeCollection.AsQueryable<Poruka>()
                        orderby n.Vreme_Slanja ascending
-                       where ((Korisnici.VratiObjId(n.Sender_ID) == kucadzija1 && Korisnici.VratiObjId(n.Receiver_ID) == kucadzija2) || (Korisnici.VratiObjId(n.Sender_ID) == kucadzija2 && Korisnici.VratiObjId(n.Receiver_ID) == kucadzija1))
+                       where ((n.Sender_ID.Id == kucadzija1 && n.Receiver_ID.Id == kucadzija2) || (n.Sender_ID.Id == kucadzija2 && n.Receiver_ID.Id == kucadzija1))
                        select n.Id;
             foreach (var found in find)
             {

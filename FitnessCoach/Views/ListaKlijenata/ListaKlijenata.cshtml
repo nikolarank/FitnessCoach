@@ -39,7 +39,7 @@
                         <tr>
                             <td style="text-align:center;"><img src=@Model.slika(item) class="img-thumbnail img-responsive" style="width:60px;" /></td>
                             <td style="text-align:center; color:#337ab7; font-size:22px; padding-top:25px;"> @item.Ime @item.Prezime  </td>
-                            <td style="text-align:center; color:#337ab7; font-size:22px; padding-top:25px;">@Html.ActionLink("Dashboard", "ClientDashboard", "ClientDashboard", new { korisnik = item.Id }, new { @style = "color:#337ab7;" })</td>
+                            <td style="text-align:center; color:#337ab7; font-size:22px; padding-top:25px;">@Html.ActionLink("Dashboard", "ClientDashboard", "ClientDashboard", new { korisnik = item.Id.ToString() }, new { @style = "color:#337ab7;" })</td>
 
                         </tr>
                     }

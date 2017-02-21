@@ -6,3 +6,11 @@ C:\Users\Predrag Cukalovic\Documents\Visual Studio 2013\Projects\FitnessCoach\Mo
 C:\Users\Predrag Cukalovic\Documents\Visual Studio 2013\Projects\FitnessCoach\Mongo\obj\Debug\Mongo.csprojResolveAssemblyReference.cache
 C:\Users\Predrag Cukalovic\Documents\Visual Studio 2013\Projects\FitnessCoach\Mongo\obj\Debug\Mongo.exe
 C:\Users\Predrag Cukalovic\Documents\Visual Studio 2013\Projects\FitnessCoach\Mongo\obj\Debug\Mongo.pdb
+D:\GitHubProjects\FitnessCoach\FitnessCoach\Mongo\bin\Debug\Mongo.exe.config
+D:\GitHubProjects\FitnessCoach\FitnessCoach\Mongo\bin\Debug\Mongo.exe
+D:\GitHubProjects\FitnessCoach\FitnessCoach\Mongo\bin\Debug\Mongo.pdb
+D:\GitHubProjects\FitnessCoach\FitnessCoach\Mongo\bin\Debug\MongoDB.Bson.dll
+D:\GitHubProjects\FitnessCoach\FitnessCoach\Mongo\bin\Debug\MongoDB.Driver.dll
+D:\GitHubProjects\FitnessCoach\FitnessCoach\Mongo\obj\Debug\Mongo.csprojResolveAssemblyReference.cache
+D:\GitHubProjects\FitnessCoach\FitnessCoach\Mongo\obj\Debug\Mongo.exe
+D:\GitHubProjects\FitnessCoach\FitnessCoach\Mongo\obj\Debug\Mongo.pdb
