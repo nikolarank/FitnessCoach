@@ -8,7 +8,7 @@ using Mongo.Documents;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace Fitness.Models
+namespace FitnessCoach.Models
 {
     public class PlanIshraneModel
     {

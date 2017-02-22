@@ -1,4 +1,4 @@
-﻿using Fitness.Models;
+﻿using FitnessCoach.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using Mongo.DataAccess;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace Fitness.Controllers
+namespace FitnessCoach.Controllers
 {
     public class PlanIshraneController : Controller
     {
