@@ -42,5 +42,26 @@ namespace FitnessCoach.Controllers
             return View("~/Views/PlanIshrane/ListaPlanovaIshrane.cshtml", model);
         }
 
+        public ActionResult DodajObrok(int rednibroj, string[] namirnice)
+        {
+
+            Obrok o = new Obrok
+            {
+                Redni_Broj_Obroka = rednibroj,
+            };
+
+            foreach (string namirnicaId in namirnice)
+            {
+                ObjectId id = ObjectId.Parse(namirnicaId);
+                MongoDBRef r = new MongoDBRef("namirnice", id);
+                o.Namirnice.Add(r);
+            }
+            
+            Obroci.Dodaj(o);
+            PlanIshraneModel model = new PlanIshraneModel();
+            model.Obroci.Add(o);
+
+            return View("~/Views/PlanIshrane/ListaPlanovaIshrane.cshtml", model);
+        }
     }
 }

@@ -30,6 +30,11 @@ namespace FitnessCoach.Models
             return ZaRuckanje.SveNamirniceUObroku(obrokID);
         }
 
+        public List<Namirnica> SveNamirnice()
+        {
+            return Namirnice.SveNamirnice();
+        }
+
         //public string opis(int planID)
         //{
         //    return PlanIshrane.OpisKorisnickogPlana((int)HttpContext.Current.Session["Id"], planID);
@@ -42,6 +47,7 @@ namespace FitnessCoach.Models
         public PlanIshraneModel()
         {
             Planovi = new List<Plan_Ishrane>();
+            Obroci = new List<Obrok>();
             foreach (var ins in PlanIshrane.SviPlanovi())
             {
                 Planovi.Add(ins);
