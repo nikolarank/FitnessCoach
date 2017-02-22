@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using Mongo.DataAccess;
@@ -18,7 +17,7 @@ namespace FitnessCoach.Models
 
         public List<Plan_Ishrane> PlanoviKorisnika { get; set; }
 
-        public List<Obrok> Obroci { get; set; }
+        //public List<Obrok> Obroci { get; set; }
 
         //public List<Obrok> SviObrociUPlanu(ObjectId planID)
         //{
@@ -44,10 +43,15 @@ namespace FitnessCoach.Models
             return Mongo.Connection<Namirnica>.getDatabase().FetchDBRefAs<Namirnica>(sender);
         }
 
+        public Obrok vratiObrok(MongoDBRef sender)
+        {
+            return Mongo.Connection<Obrok>.getDatabase().FetchDBRefAs<Obrok>(sender);
+        }
+
         public PlanIshraneModel()
         {
             Planovi = new List<Plan_Ishrane>();
-            Obroci = new List<Obrok>();
+            //Obroci = new List<Obrok>();
             foreach (var ins in PlanIshrane.SviPlanovi())
             {
                 Planovi.Add(ins);

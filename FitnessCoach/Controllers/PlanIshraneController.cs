@@ -42,7 +42,7 @@ namespace FitnessCoach.Controllers
             return View("~/Views/PlanIshrane/ListaPlanovaIshrane.cshtml", model);
         }
 
-        public ActionResult DodajObrok(int rednibroj, string[] namirnice)
+        public ActionResult DodajObrok(string plan, int rednibroj, string[] namirnice)
         {
 
             Obrok o = new Obrok
@@ -58,8 +58,12 @@ namespace FitnessCoach.Controllers
             }
             
             Obroci.Dodaj(o);
+            ObjectId planId = ObjectId.Parse(plan);
+
+            Obroci.Procitaj(o.Id);
+            PlanIshrane.DodajObrok(planId, new MongoDBRef("obroci", o.Id));
+
             PlanIshraneModel model = new PlanIshraneModel();
-            model.Obroci.Add(o);
 
             return View("~/Views/PlanIshrane/ListaPlanovaIshrane.cshtml", model);
         }

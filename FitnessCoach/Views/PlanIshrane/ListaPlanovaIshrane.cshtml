@@ -27,7 +27,7 @@
         <div class="col-md-offset-2 col-md-8 well" style="background-color:rgba(244,244,244,0.5); margin-top:6%; min-width:570px;">
             <div class="row" style="padding-bottom: 2px; padding-top:5px;">
                 <div class="col-md-12" style="text-align:center;">
-                    <a href="#" style="color:#337ab7;" data-toggle="modal" data-target="#dodajPlanModal"> Dodaj plan ishrane </a>
+                    <a href="#" style="color:#337ab7;" data-toggle="modal" data-target="#dodajPlanModal"> Create a new nutrition plan </a>
                 </div>
             </div>
 
@@ -60,24 +60,28 @@
                                             <h4 class="modal-title">@item.Naziv</h4>
                                             <div class="row" style="padding-bottom: 2px; padding-top:5px;">
                                                 <div class="col-md-12" style="text-align:center;">
-                                                    <a href="#" onmousedown="spust()" style="color:#337ab7;"> Dodaj obrok </a>
+                                                    <a href="#" onmousedown="spust()" style="color:#337ab7;"> Create a meal </a>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="modal-body">
                                             <!-- OBROK -->
                                             @{
-                                                if (Model.Obroci != null)
+                                                if (item.Obroci != null)
                                                 {
-                                                    foreach (var obrok in Model.Obroci)
+                                                    foreach (var obrok in item.Obroci)
                                                     {
+                                                        var o = Model.vratiObrok(obrok);
                                                         <div class="container-fluid">
-                                                            <div class="row"><div class="col-md-12"><h4 style="color:green">@obrok.Redni_Broj_Obroka</h4></div></div>
+                                                            <div class="row"><div class="col-md-12"><h4 style="color:green">@o.Redni_Broj_Obroka. meal</h4></div></div>
+                                                            <h4 style="color:green">List of foods</h4>
                                                             <div class="row">
-                                                                @{
-                                                                    foreach (var namirnica in obrok.Namirnice)
-                                                                    {
-                                                                        <div class="col-md-12" style="text-align:center;color:cornflowerblue;"><p>@Model.vratiNamirnicu(namirnica).Naziv</p></div>
+                                                                                                                                @{
+                                                                                                                                        int i = 0;
+                                                                                                                                        foreach (var namirnica in o.Namirnice)
+                                                                                                                                        {
+                                                                                                                                        i++;
+                                                                                                                                        <div class="col-md-12" style="text-align:center;color:cornflowerblue;"><p>@i. @Model.vratiNamirnicu(namirnica).Naziv</p></div>
                                                                     }
                                                                 }
                                                             </div>
@@ -92,6 +96,8 @@
                                                                     <div hidden class="spust">
                                                                         @using (Html.BeginForm("DodajObrok", "PlanIshrane", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                                                         {
+                                                                            @Html.Hidden("plan", @item.Id.ToString());
+           
                                                                             <div class="row" style="margin-bottom: 10px;margin-left:5px; margin-right:5px; text-align:center;">
                                                                                 @Html.TextBox("rednibroj", null, new { @class = "form-control", @id = "rednibroj", @name = "rednibroj", @placeholder = "Redni broj obroka" })
                                                                             </div>
