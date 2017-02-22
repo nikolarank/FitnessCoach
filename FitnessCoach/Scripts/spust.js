@@ -1,0 +1,5 @@
+﻿function spust() {
+   
+        $("#spust").show();
+    
+}

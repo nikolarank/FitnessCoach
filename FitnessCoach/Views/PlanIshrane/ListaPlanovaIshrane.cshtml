@@ -58,6 +58,11 @@
                                     <div class="modal-content">
                                         <div class="modal-header" style="text-align:center; color:#337ab7;">
                                             <h4 class="modal-title">@item.Naziv</h4>
+                                            <div class="row" style="padding-bottom: 2px; padding-top:5px;">
+                                                <div class="col-md-12" style="text-align:center;">
+                                                    <a href="#" onmousedown="spust()" style="color:#337ab7;"> Dodaj obrok </a>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="modal-body">
                                             <!-- OBROK -->
@@ -79,6 +84,12 @@
                                                         </div>
                                                                         }
                                                                     }
+                                                                    <div hidden id ="spust" class="container-fluid">
+                                                                        <div class="row" style="margin-bottom: 10px;margin-left:5px; margin-right:5px; text-align:center;">
+                                                                            @Html.TextBox("rednibroj", null, new { @class = "form-control", @id = "rednibroj", @name = "rednibroj", @placeholder = "Redni broj obroka" })
+                                                                        </div>
+                                                                        <div class="row" style="margin-bottom: 10px; margin-left: 5px; margin-right: 5px; text-align: center; "> <button class="btn btn-primary btn-block">Dodaj</button></div>
+                                                                    </div>
                                             }
                                             <!-- KRAJ ZA OBROK -->
                                         </div>
@@ -128,3 +139,4 @@
 
 </body>
 </html>
+<script src="~/Scripts/spust.js"></script>
