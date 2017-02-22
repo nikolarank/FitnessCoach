@@ -106,7 +106,14 @@
                             foreach (var item in Model.vezbe(Model.Abdominals, Model.Back, Model.Biceps, Model.Chest, Model.Legs, Model.Shoulders, Model.Triceps, Model.SelectAll))
                             {
                                 <tr class="hoverMessagesListaVezbi" data-toggle="modal" data-target="#@item.Id.ToString()">
-                                    <td><img src=@Model.VezbaToBase64(item.Slika, item.Misicna_Partija) class="img-thumbnail img-responsive" style="width:100px; height:100px;" /></td>
+                                    @if (item.Slika != null)
+                                    {
+                                        <td><img src=@Model.VezbaToBase64(item.Slika, item.Misicna_Partija) class="img-thumbnail img-responsive" style="width:100px; height:100px;" /></td>
+                                    }
+                                    else
+                                    {
+                                        <td style="color:green; font-weight:600;text-align:left;">No illustration</td>
+                                    }
                                     <td style="color:green; font-weight:600;text-align:left;">@item.Naziv</td>
                                     <td style="color:green; font-weight:600;text-align:left;">@item.Misicna_Partija</td>
                                     <td style="color:green; font-weight:600;text-align:left;">@item.Prosecna_Ocena</td>
@@ -125,13 +132,20 @@
                                             <div class="modal-body">
                                                 <!-- red sa podacima -->
                                                 <div class="row" style="text-align:center;">
-                                                    <div class="col-md-12"><img src=@Model.VezbaToBase64(item.Slika, item.Misicna_Partija) class="img-thumbnail img-responsive" style="height:230px; width:230px;" /></div>
+                                                    @if (item.Slika != null)
+                                                    {
+                                                        <div class="col-md-12"><img src=@Model.VezbaToBase64(item.Slika, item.Misicna_Partija) class="img-thumbnail img-responsive" style="height:230px; width:230px;" /></div>
+                                                    }
+                                                    else
+                                                    {
+                                                         <div class="col-md-12">No illustration</div>
+                                                    }
                                                     <div class="col-md-12">
                                                         <p style="color:green; margin-top:10px;" class="well">
                                                             @item.Tekst
                                                         </p>
                                                     </div>
-                                                </div>
+</div>
                                                 <!-- kraj reda sa podacima -->
                                                 <!-- red za ocenjivanje sa zvezdicama-->
                                                 <!-- kraj reda za ocenjivanje sa zvezdicama-->

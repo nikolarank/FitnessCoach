@@ -38,12 +38,12 @@ namespace FitnessCoach.Controllers
                 Tekst = tekst,
                 Misicna_Partija = misicna_partija,
                 Prosecna_Ocena = 0.0,
-                Broj_Ocenjivanja = 0,
-                Slika = file.FileName
+                Broj_Ocenjivanja = 0
             };
 
             if (file != null && file.ContentLength > 0)
             {
+                v.Slika = file.FileName;
                 string path = Path.Combine(Server.MapPath("~/Content/slikeVezbi/" + misicna_partija), Path.GetFileName(file.FileName));
                 file.SaveAs(path);
             }
