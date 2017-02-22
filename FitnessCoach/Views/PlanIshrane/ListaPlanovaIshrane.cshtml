@@ -46,12 +46,12 @@
                             <tr style="text-align:center;">
                                 <td>@item.Naziv</td>
                                 <td>@item.Prosecna_Ocena</td>
-                                <td><button class="btn btn-default btn-block" style="background-color:rgba(255,255,255,0.5); color:#337ab7;" data-toggle="modal" data-target="#@item.Naziv">Details</button></td>
+                                <td><button class="btn btn-default btn-block" style="background-color:rgba(255,255,255,0.5); color:#337ab7;" data-toggle="modal" data-target="#@item.Id.ToString()">Details</button></td>
                             </tr>
 
 
                         <!-- Modal -->
-                            <div id="@item.Naziv" class="modal fade" role="dialog">
+                            <div id="@item.Id.ToString()" class="modal fade" role="dialog">
                                 <div class="modal-dialog">
 
                                     <!-- Modal content-->

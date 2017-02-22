@@ -123,10 +123,18 @@
                                             <div class="modal-body">
                                                 <!-- red sa podacima -->
                                                 @{
-                                foreach (var promenljiva in Model.VezbeUTreningu(item.Id.ToString()))
+                                foreach (var promenljiva in Model.VezbeUTreningu(item.Id))
                                 {
                                     <div class="row well">
+                                        @if (promenljiva.Slika != null)
+                                        {
                                         <div class="col-md-12" style="text-align:center; color:#337ab7;"><img src=@Model.VezbaToBase64(promenljiva.Slika, promenljiva.Misicna_Partija) class="img-thumbnail img-responsive" style="height:100px; width:100px;" /></div>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-md-12" style="text-align:center; color:#337ab7;">No illustration</div>
+
+                                        }
                                         <div class="col-md-12" style="text-align: center; color: #337ab7;">Exercise name: @promenljiva.Naziv</div>
                                         <div class="col-md-12" style="text-align: center; color: #337ab7;">Description: @promenljiva.Tekst</div>
                                         <div class="col-md-12" style="text-align: center; color: #337ab7;">Ranking: @promenljiva.Prosecna_Ocena</div>

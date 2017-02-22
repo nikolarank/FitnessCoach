@@ -8,6 +8,7 @@ using Mongo.DataAccess;
 using FitnessCoach.Models;
 using System.IO;
 using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace FitnessCoach.Controllers
 {
@@ -34,9 +35,11 @@ namespace FitnessCoach.Controllers
         public ActionResult DodajTrening(string naziv, string misicna_partija, string[] vezbe)
         {
             List<MongoDBRef> lista = new List<MongoDBRef>();
+           
             foreach (string v in vezbe)
             {
-                lista.Add(new MongoDBRef("vezbe", v));
+                ObjectId id = ObjectId.Parse(v);
+                lista.Add(new MongoDBRef("vezbe", id));
             }
 
             Trening t = new Trening()

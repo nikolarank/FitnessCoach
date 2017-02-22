@@ -69,8 +69,9 @@ namespace Mongo.DataAccess
 
             foreach (MongoDBRef vezbaRef in Procitaj(treningID).Vezbe)
             {
-                //sve.Add(Connection<Vezba>.getDatabase().FetchDBRefAs<Vezba>(vezbaRef));
-                sve.Add(Vezbe.Procitaj(ObjectId.Parse(vezbaRef.Id.ToString())));
+                sve.Add(Connection<Vezba>.getDatabase().FetchDBRefAs<Vezba>(vezbaRef));
+                //sve.Add(Vezbe.Procitaj(ObjectId.Parse(vezbaRef.Id.ToString())));
+                //sve.Add(Vezbe.Procitaj((ObjectId)vezbaRef.Id));
             }
 
             return sve;

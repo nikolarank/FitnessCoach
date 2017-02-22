@@ -28,10 +28,9 @@ namespace FitnessCoach.Models
             return Treninzi.SelektovaniMisici(trbusnjaci, ledja, biceps, grudi, noge, ramena, triceps, sve);
         }
 
-        public List<Vezba> VezbeUTreningu(string treningID)
+        public List<Vezba> VezbeUTreningu(ObjectId treningID)
         {
-            ObjectId i = ObjectId.Parse(treningID);
-            return Treninzi.SveVezbeUTreningu(i);
+            return Treninzi.SveVezbeUTreningu(treningID);
         }
 
         public List<SelectListItem> SveVezbe()
