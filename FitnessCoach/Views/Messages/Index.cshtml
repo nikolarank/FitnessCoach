@@ -173,10 +173,13 @@
                                                             <!-- DUGME ZA SEND -->
                                                             <div class="row" style="margin-bottom:100px; text-align:center;">
                                                                 <div class="col-md-12">
-                                                                    <form method="post" action="@Url.Action("PosaljiPoruku", "Messages", new { primalac = ((MongoDB.Driver.MongoDBRef)Session["Instruktor"]).Id.ToString()})">
+                                                                    @if (Session["Instruktor"] != null)
+                                                                    {
+                                                                    <form method="post" action="@Url.Action("PosaljiPoruku", "Messages", new { primalac = ((MongoDB.Driver.MongoDBRef)Session["Instruktor"]).Id.ToString() })">
                                                                         @Html.TextAreaFor(m => m.tekstPoruke, new { @style = "margin-bottom:10px; resize:none; border-radius:5px; max-width:inherit; width:100%;" })
                                                                         <button class="btn btn-primary btn-block" style="margin-right:50px;" data-toggle="tooltip" title="Send a message to your instructor."> Send Message</button>
                                                                     </form>
+                                                                    }
                                                                 </div>
                                                             </div>
                                                             <!-- KRAJ SEND DUGMETA -->
