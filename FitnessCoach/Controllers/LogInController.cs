@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Mongo.Documents;
 using Mongo.DataAccess;
 using FitnessCoach.Models;
+using Mongo;
 
 namespace FitnessCoach.Controllers
 {
@@ -15,6 +16,7 @@ namespace FitnessCoach.Controllers
         // GET: /LogIn/
         public ActionResult Logovanje()
         {
+            Mongo.InsertData.Insert();
             LogInModel model = new LogInModel();
             return View(model);
         }

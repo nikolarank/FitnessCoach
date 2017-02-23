@@ -23,7 +23,7 @@ namespace Mongo.DataAccess
                 var collection = Connection<Korisnik>.getCollection(CollectionName);
                 if (ProcitajPoMailu(Item.Email) == null)
                 {
-                    collection.Save(Item); ;
+                    collection.Save(Item); 
                 }
             }
             catch (Exception e)

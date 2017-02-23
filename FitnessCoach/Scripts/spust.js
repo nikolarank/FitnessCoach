@@ -6,4 +6,6 @@
     a = $('.spust');
     a.each().show();
 
+
+
 }

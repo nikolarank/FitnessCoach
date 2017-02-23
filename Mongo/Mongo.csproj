@@ -64,6 +64,7 @@
     <Compile Include="Documents\Poruka.cs" />
     <Compile Include="Documents\Trening.cs" />
     <Compile Include="Documents\Vezba.cs" />
+    <Compile Include="InsertData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

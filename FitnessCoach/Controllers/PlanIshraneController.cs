@@ -33,7 +33,7 @@ namespace FitnessCoach.Controllers
             {
                 Naziv = naziv,
                 Broj_Ocenjivanja = 0,
-                Prosecna_Ocena = 0,
+                Prosecna_Ocena = 9.0,
             };
 
             PlanIshrane.Dodaj(plan);

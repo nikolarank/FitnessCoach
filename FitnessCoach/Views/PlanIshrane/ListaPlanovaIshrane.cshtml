@@ -94,10 +94,9 @@
 
 
                                                                     <div hidden class="spust">
-                                                                        @using (Html.BeginForm("DodajObrok", "PlanIshrane", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                                                        {
-                                                                            @Html.Hidden("plan", @item.Id.ToString());
-           
+                                                                        <form method="post" action="@Url.Action("DodajObrok", "PlanIshrane", new { plan = item.Id.ToString() })">
+                                              
+
                                                                             <div class="row" style="margin-bottom: 10px;margin-left:5px; margin-right:5px; text-align:center;">
                                                                                 @Html.TextBox("rednibroj", null, new { @class = "form-control", @id = "rednibroj", @name = "rednibroj", @placeholder = "Redni broj obroka" })
                                                                             </div>
@@ -105,25 +104,26 @@
 
 
                                                                                 @{
-                                                                                    List<SelectListItem> listItems = new List<SelectListItem>();
-                                                                                    foreach (var namirnica in Model.SveNamirnice())
-                                                                                    {
-                                                                                        listItems.Add(new SelectListItem
-                                                                                        {
-                                                                                            Text = namirnica.Naziv,
-                                                                                            Value = namirnica.Id.ToString()
-                                                                                        });
-                                                                                    }
+                                                    List<SelectListItem> listItems = new List<SelectListItem>();
+                                                    foreach (var namirnica in Model.SveNamirnice())
+                                                    {
+                                                        listItems.Add(new SelectListItem
+                                                        {
+                                                            Text = namirnica.Naziv,
+                                                            Value = namirnica.Id.ToString()
+                                                        });
+                                                    }
 
                                                                                 }
                                                                                 @Html.DropDownList("namirnice", listItems,
-                                                                     "Namirnice", new { @class = "form-control", @size = "10", @multiple = "multiple" })
+                                                                     "Namirnice", new { @class = "form-control", @size = "5", @multiple = "multiple" })
 
                                                                             </div>
 
                                                                             <div class="row" style="margin-bottom: 10px; margin-left: 5px; margin-right: 5px; text-align: center; "> <button class="btn btn-primary btn-block">Dodaj</button></div>
-                                                                                    }
-                                                                    </div>
+                                                                                </form>
+                                                                             
+</div>
                                                                                     }
 
 
@@ -177,3 +177,11 @@
 </body>
 </html>
 <script src="~/Scripts/spust.js"></script>
+
+<script>
+    $(function () {
+        $('body').on('hidden.bs.modal', '.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+    });
+</script>

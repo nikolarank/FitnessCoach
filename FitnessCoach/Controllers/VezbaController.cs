@@ -37,7 +37,7 @@ namespace FitnessCoach.Controllers
                 Naziv = naziv,
                 Tekst = tekst,
                 Misicna_Partija = misicna_partija,
-                Prosecna_Ocena = 0.0,
+                Prosecna_Ocena = 9.0,
                 Broj_Ocenjivanja = 0
             };
 
