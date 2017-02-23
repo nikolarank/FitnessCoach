@@ -35,7 +35,7 @@
                                 <a href="#" class="list-group-item" style="color:green; font-weight:600; text-align:center;" data-toggle="collapse" data-target="#@item.Id.ToString()">@item.Naziv</a>
                                 <ul class="list-group collapse" id="@item.Id.ToString()">
                                     @{
-                                foreach (var item1 in Model.VezbeUTreningu(item.Id.ToString()))
+                                foreach (var item1 in Model.VezbeUTreningu(item.Id))
                                 {
                                     <li class="list-group-item" style="font-weight:600;">Muscle Group: @item1.Misicna_Partija</li>
                                         <li class="list-group-item">@item1.Naziv</li>

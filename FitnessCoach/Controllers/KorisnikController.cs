@@ -37,9 +37,10 @@ namespace FitnessCoach.Controllers
             return View("~/Views/Korisnik/ProfilnaAdministrator.cshtml", model);
         }
 
-        public ActionResult InstruktorToKorisnik(ObjectId id)
+        public ActionResult InstruktorToKorisnik(string id)
         {
-            Korisnici.KonvertujUKorisnika(id);
+            ObjectId i = ObjectId.Parse(id);
+            Korisnici.KonvertujUKorisnika(i);
 
             AdministratorModel model = new AdministratorModel();
 
@@ -87,12 +88,11 @@ namespace FitnessCoach.Controllers
             return View("~/Views/Korisnik/ProfilnaKorisnikInstruktor.cshtml", model);
         }
 
-        public ActionResult PromeniBiografiju()
+        public ActionResult PromeniBiografiju(KorisnikModel model)
         {
-            KorisnikModel model = new KorisnikModel();
 
             Korisnici.PromeniBiografiju((Korisnik)Session["user"], model.biografija);
-            return View("~/Views/Korisnik/ProfilnaAdministrator.cshtml", model);
+            return View("~/Views/Korisnik/ProfilnaKorisnikInstruktor.cshtml", model);
         }
 	}
 }

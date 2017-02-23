@@ -36,7 +36,7 @@ namespace FitnessCoach.Controllers
                     Email = model.EmailRegistracija,
                     Biografija = "",
                     Broj_Ocenjivanja = 0,
-                    Rang = 0,
+                    Rang = 9.0,
                     Status = "korisnik",
                     Moj_Instruktor = null,
                     Slika = "unknown-person.jpg",

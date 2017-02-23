@@ -174,6 +174,7 @@
     <Compile Include="Controllers\ListaKlijenataController.cs" />
     <Compile Include="Controllers\LogInController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="Controllers\myFitnessNutritionController.cs" />
     <Compile Include="Controllers\myFitnessTrainingController.cs" />
     <Compile Include="Controllers\NamirnicaController.cs" />
     <Compile Include="Controllers\PlanIshraneController.cs" />
@@ -387,6 +388,7 @@
     <Content Include="Views\myFitnessTraining\myFitnessTraining.cshtml" />
     <Content Include="Views\PlanIshrane\ListaPlanovaIshrane.cshtml" />
     <Content Include="Views\Messages\Index.cshtml" />
+    <Content Include="Views\myFitnessNutrition\myFitnessNutrition.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

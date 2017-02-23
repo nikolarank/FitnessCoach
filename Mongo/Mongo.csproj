@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connection.cs" />
-    <Compile Include="DataAccess\Crud.cs" />
     <Compile Include="DataAccess\Korisnici.cs" />
     <Compile Include="DataAccess\Namirnice.cs" />
     <Compile Include="DataAccess\Obroci.cs" />
@@ -58,7 +57,6 @@
     <Compile Include="DataAccess\Poruke.cs" />
     <Compile Include="DataAccess\Treninzi.cs" />
     <Compile Include="DataAccess\Vezbe.cs" />
-    <Compile Include="DataAccess\ZaRuckanje.cs" />
     <Compile Include="Documents\Korisnik.cs" />
     <Compile Include="Documents\Namirnica.cs" />
     <Compile Include="Documents\Obrok.cs" />

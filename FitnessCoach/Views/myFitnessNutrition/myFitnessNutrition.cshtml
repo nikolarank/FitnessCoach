@@ -1,0 +1,63 @@
+﻿@model FitnessCoach.Models.PlanIshraneModel
+@{
+    ViewBag.Title = "myFitnessNutrition";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<head>
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/bootstrapDataTables.js"></script>
+    <link href="~/Content/CSS/dataTablesBootstrap.css" rel="stylesheet" />
+</head>
+<body style="background-image: url('../../Content/slike/myNutritionWallpaper.jpg'); background-repeat: no-repeat; background-position: center center; background-attachment: fixed; background-size: cover; padding-top: 0px;">
+
+    <div class="container-fluid" style="margin-top:60px;">
+        <div class="row" style="margin-top:20px; margin-bottom:20px; min-width:700px;">
+            <div class="col-md-offset-2 col-md-8 well" style="background-color:rgba(244,244,244,0.3); height:auto; overflow-y:auto;">
+                <div class="row well" style="background-color:rgba(244,244,244,0.6);text-align:center; color:#337ab7; font-weight:600; margin-bottom:10px;"><h3>My Nutrition Plans</h3></div>
+
+
+                <div class="row well" style="background-color:rgba(244,244,244,0.6);color:#337ab7;margin-bottom:10px;">
+                    <div class="list-group">
+                        <!-- listing -->
+                        @{
+                            foreach (var item in Model.PlanoviKorisnika)
+                            {
+                                <a href="#" class="list-group-item" style="color:green; font-weight:600; text-align:center;" data-toggle="collapse" data-target="#@item.Id.ToString()">@item.Naziv</a>
+                                <ul class="list-group collapse" id="@item.Id.ToString()">
+                                    
+                                    <li class="list-group-item">
+                                        @{
+                                            foreach (var promenljiva in item.Obroci)
+                                            {
+                                                var p = Model.vratiObrok(promenljiva);
+                                                var nekiVar = p.Id.ToString() + "obrok";
+                                        <!-- obrok -->
+                                                <div class="list-group">
+                                                    <a href="#" class="list-group-item" style="color:green;font-weight:600; text-align:center;" data-toggle="collapse" data-target="#@nekiVar">@p.Redni_Broj_Obroka</a>
+                                                    <ul class="list-group collapse" id="@nekiVar">
+                                                        @{
+                                                            foreach (var promenljiva2 in p.Namirnice)
+                                                            {
+                                                                var nam = Model.vratiNamirnicu(promenljiva2);
+                                                                <li class="list-group-item">@nam.Naziv</li>
+
+                                                            }
+                                                        }
+                                                    </ul>
+                                                </div>
+                                        <!-- kraj obroka -->
+                                                            }
+                                        }
+                                </ul>
+                            <!-- kraj listinga -->
+                                                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

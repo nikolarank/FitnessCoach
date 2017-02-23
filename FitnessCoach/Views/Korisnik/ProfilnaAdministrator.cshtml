@@ -103,7 +103,7 @@
                                         <td>@item.Rang</td>
                                         <td>
                                             <div class="col-md-12" style="text-align:center; color:red;">
-                                                <form method="post" action="@Url.Action("InstruktorToKorisnik", "Korisnik", new { id = item.Id })">
+                                                <form method="post" action="@Url.Action("InstruktorToKorisnik", "Korisnik", new { id = item.Id.ToString() })">
                                                     <button class="btn btn-outline-secondary"><span class="glyphicon glyphicon-ban-circle"></span></button>
                                                 </form>
                                             </div>

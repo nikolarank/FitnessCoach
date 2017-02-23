@@ -24,10 +24,10 @@ namespace FitnessCoach.Models
         //    return ZaRuckanje.SviObrociUPlanu(planID);
         //}
 
-        public List<Namirnica> SveNamirniceUObroku(ObjectId obrokID)
-        {
-            return ZaRuckanje.SveNamirniceUObroku(obrokID);
-        }
+        //public List<Namirnica> SveNamirniceUObroku(ObjectId obrokID)
+        //{
+        //    return ZaRuckanje.SveNamirniceUObroku(obrokID);
+        //}
 
         public List<Namirnica> SveNamirnice()
         {

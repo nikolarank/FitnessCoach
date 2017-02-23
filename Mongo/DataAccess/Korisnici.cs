@@ -349,6 +349,10 @@ namespace Mongo.DataAccess
             {
                 Korisnik k = Korisnici.Procitaj(korisnikID);
                 k.Planovi_Ishrane.Add(new MongoDBRef("planovi_ishrane", planID));
+                var collection = Connection<Korisnik>.getCollection(CollectionName);
+
+                collection.Save(k);
+
             }
 
             catch (Exception e)
